@@ -44,7 +44,7 @@ export default function App() {
             <PhotosGallery arr={photos} onClick={handleSelectedPhoto} />
           )}
           {selectedPhoto && (
-            <Modal>
+            <Modal onClose={() => setSelectedPhoto(null)}>
               <img src={selectedPhoto.src.original} alt={selectedPhoto.alt} />
             </Modal>
           )}
