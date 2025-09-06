@@ -38,7 +38,7 @@ export default function App() {
       <Section>
         <Container>
           <Form onSubmit={handleSearch} />
-          {isLoading && <RingLoader size="80" color="#2a2a2a" />}
+          {isLoading && <RingLoader size="80px" color="#2a2a2a" />}
           {isError && <MdError size="80" className={css.error} />}
           {photos.length > 0 && (
             <PhotosGallery arr={photos} onClick={handleSelectedPhoto} />
