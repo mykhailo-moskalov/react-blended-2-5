@@ -1,9 +1,8 @@
-import React from "react";
-
+import type { ReactNode } from "react";
 import styled from "./Container.module.css";
 
 interface IContainer {
-  children: any;
+  children: ReactNode;
 }
 
 export default function Container({ children }: IContainer) {
