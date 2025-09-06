@@ -9,6 +9,7 @@ import Form from "../Form/Form";
 import PhotosGallery from "../PhotosGallery/PhotosGallery";
 import Modal from "../Modal/Modal";
 import css from "./App.module.css";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const [photos, setPhotos] = useState<IPhoto[]>([]);
@@ -48,6 +49,7 @@ export default function App() {
               <img src={selectedPhoto.src.original} alt={selectedPhoto.alt} />
             </Modal>
           )}
+          <Toaster />
         </Container>
       </Section>
     </div>
