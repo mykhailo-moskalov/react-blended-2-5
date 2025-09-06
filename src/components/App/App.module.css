@@ -1,3 +1,11 @@
 .app {
   padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  fill: red;
 }
