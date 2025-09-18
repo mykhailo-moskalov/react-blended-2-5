@@ -41,3 +41,9 @@
   background-color: #1b4332;
   transform: translateY(0);
 }
+
+.loader {
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+}
