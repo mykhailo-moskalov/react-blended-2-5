@@ -1,17 +1,25 @@
+// ? libraries
+import { ChangeEvent, useEffect, useState } from "react";
+import { useDebounce } from "use-debounce";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import toast, { Toaster } from "react-hot-toast";
+import { RingLoader } from "react-spinners";
+
+// * types
+import { Post } from "../../types/post";
+
+// * API
+import { fetchPosts } from "../../services/postService";
+
+// ! components
 import Modal from "../Modal/Modal";
 import PostList from "../PostList/PostList";
 import SearchBox from "../SearchBox/SearchBox";
 import Pagination from "../Pagination/Pagination";
-import css from "./App.module.css";
-import { useEffect, useState } from "react";
-import { useDebounce } from "use-debounce";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { fetchPosts } from "../../services/postService";
-import toast, { Toaster } from "react-hot-toast";
-import { RingLoader } from "react-spinners";
 import CreatePostForm from "../CreatePostForm/CreatePostForm";
 import EditPostForm from "../EditPostForm/EditPostForm";
-import { Post } from "../../types/post";
+
+import css from "./App.module.css";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -55,7 +63,7 @@ export default function App() {
         <header className={css.toolbar}>
           <SearchBox
             value={searchQuery}
-            onSearch={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onSearch={(e: ChangeEvent<HTMLInputElement>) => {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
