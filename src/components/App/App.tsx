@@ -30,34 +30,11 @@ export default function App() {
   const itemsPerPage = 8;
   const totalPages = data ? Math.ceil(data.totalCount / itemsPerPage) : 0;
 
-  function openModal(modal: string) {
-    switch (modal) {
-      case "create":
-        setIsCreateModalOpen(true);
-        break;
-
-      case "edit":
-        setIsEditModalOpen(true);
-        break;
-
-      default:
-        break;
-    }
+  function toggleEditModal() {
+    setIsEditModalOpen(!isEditModalOpen);
   }
-  function closeModal(modal: string) {
-    switch (modal) {
-      case "create":
-        setIsCreateModalOpen(false);
-        break;
-
-      case "edit":
-        setIsEditModalOpen(false);
-        setEditedPost(null);
-        break;
-
-      default:
-        break;
-    }
+  function toggleCreateModal() {
+    setIsCreateModalOpen(!isCreateModalOpen);
   }
 
   function handleEditPost(post: Post) {
@@ -92,7 +69,7 @@ export default function App() {
             />
           )}
 
-          <button className={css.button} onClick={() => openModal("create")}>
+          <button className={css.button} onClick={() => toggleCreateModal()}>
             Create post
           </button>
         </header>
@@ -100,19 +77,25 @@ export default function App() {
         {isLoading && <RingLoader size="100px" color="#d8f3dc" className={css.loader} />}
 
         {isCreateModalOpen && (
-          <Modal onClose={() => closeModal("create")}>
-            <CreatePostForm onClose={() => closeModal("create")} />
+          <Modal onClose={() => toggleCreateModal()}>
+            <CreatePostForm onClose={() => toggleCreateModal()} />
           </Modal>
         )}
         {isEditModalOpen && (
-          <Modal onClose={() => closeModal("edit")}>
-            <EditPostForm post={editedPost} onClose={() => closeModal("edit")} />
+          <Modal onClose={() => toggleEditModal()}>
+            <EditPostForm
+              post={editedPost}
+              onClose={() => {
+                toggleEditModal();
+                setEditedPost(null);
+              }}
+            />
           </Modal>
         )}
         {data !== undefined && data?.posts?.length > 0 && (
           <PostList
             posts={data.posts}
-            toggleModal={() => openModal("edit")}
+            toggleModal={() => toggleEditModal()}
             toggleEditPost={handleEditPost}
           />
         )}
