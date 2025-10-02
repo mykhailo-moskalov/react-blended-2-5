@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Post } from '@/types/post';
-import { User } from '@/types/user';
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
@@ -25,6 +24,11 @@ export const fetchPosts = async ({
   });
   const totalCount = Number(response.headers['x-total-count']);
   return { posts: response.data, totalCount };
+};
+
+export const fetchPostById = async (id: number): Promise<Post> => {
+  const response = await axios.get<Post>(`/posts/${id}`);
+  return response.data;
 };
 
 interface NewPostContent {
@@ -52,8 +56,6 @@ export const deletePost = async (postId: number) => {
   const response = await axios.delete<Post>(`/posts/${postId}`);
   return response.data;
 };
-
-export const fetchPostById = async () => {};
 
 export const fetchUsers = async () => {};
 
