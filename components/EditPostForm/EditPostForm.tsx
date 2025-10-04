@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { editPost } from '@/lib/api';
 
 import css from './EditPostForm.module.css';
+import toast from 'react-hot-toast';
 
 const PostSchema = Yup.object().shape({
   title: Yup.string()
@@ -37,7 +38,7 @@ export default function EditPostForm({ onClose, initialValues }: EditPostFormPro
     mutationFn: editPost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
-      alert('Post edited successfully!');
+      toast.success('Post edited successfully!');
       onClose();
     },
   });

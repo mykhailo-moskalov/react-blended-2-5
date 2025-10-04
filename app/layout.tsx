@@ -4,6 +4,7 @@ import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
 import 'modern-normalize';
 import './globals.css';
+import { Toaster } from 'react-hot-toast';
 
 export default function RootLayout({
   children,
@@ -21,6 +22,7 @@ export default function RootLayout({
           {modal}
           <Footer />
         </TanStackProvider>
+        <Toaster />
       </body>
     </html>
   );

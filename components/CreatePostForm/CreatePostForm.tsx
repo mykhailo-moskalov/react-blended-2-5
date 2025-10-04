@@ -7,6 +7,7 @@ import { createPost, fetchUsers } from '@/lib/api';
 
 import css from './CreatePostForm.module.css';
 import { User } from '@/types/user';
+import toast from 'react-hot-toast';
 
 const PostSchema = Yup.object().shape({
   title: Yup.string()
@@ -39,7 +40,7 @@ export default function CreatePostForm({ onClose }: PostFormProps) {
     mutationFn: createPost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
-      alert('Post created successfully!');
+      toast('Post created successfully!');
       onClose();
     },
   });

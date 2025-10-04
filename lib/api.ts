@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Post } from '@/types/post';
+import { User } from '@/types/user';
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
@@ -57,6 +58,12 @@ export const deletePost = async (postId: number) => {
   return response.data;
 };
 
-export const fetchUsers = async () => {};
+export const fetchUsers = async (): Promise<User[]> => {
+  const response = await axios.get<User[]>(`/users`);
+  return response.data;
+};
 
-export const fetchUserById = async () => {};
+export const fetchUserById = async (userId: number): Promise<User> => {
+  const response = await axios.get<User>(`/users/${userId}`);
+  return response.data;
+};

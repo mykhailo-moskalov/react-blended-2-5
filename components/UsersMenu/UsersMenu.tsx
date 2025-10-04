@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
 import css from './UsersMenu.module.css';
-import Link from 'next/link';
-import DropdownPortal from '@/components/DropdownPortal/DropdownPortal';
+
 import { fetchUsers } from '@/lib/api';
 import { User } from '@/types/user';
-import { useQuery } from '@tanstack/react-query';
+
+import Link from 'next/link';
+import DropdownPortal from '@/components/DropdownPortal/DropdownPortal';
 
 export default function UsersMenu() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -22,13 +25,11 @@ export default function UsersMenu() {
   const toggleMenu = () => {
     setIsOpenMenu((prev) => !prev);
     if (buttonRef.current) {
-      // Отримуємо позицію та розміри кнопки у вікні браузера,
-      // щоб точно позиціонувати випадаюче меню відносно цієї кнопки
       const rect = buttonRef.current.getBoundingClientRect();
       setPosition({
-        top: rect.bottom + window.scrollY + 4, // додаємо скрол, щоб меню було у правильному місці навіть при прокрутці
-        left: rect.left + window.scrollX, // додаємо скрол по X
-        width: rect.width, // встановлюємо ширину меню такою ж, як у кнопки
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX,
+        width: rect.width,
       });
     }
   };
