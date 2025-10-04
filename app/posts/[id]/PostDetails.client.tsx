@@ -6,8 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchPostById, fetchUserById } from '@/lib/api';
 
 import css from './PostDetails.module.css';
-import { useEffect } from 'react';
-// import { User } from '@/types/user';
 
 export default function PostDetailsClient() {
   const { id } = useParams<{ id: string }>();
@@ -29,33 +27,26 @@ export default function PostDetailsClient() {
     refetchOnMount: false,
   });
 
-  useEffect(() => {
-    const fn = async () => {};
-    fn();
-  }, []);
-
   return (
-    <>
-      <main className={css.main}>
-        <div className={css.container}>
-          <div className={css.item}>
-            <button onClick={handleClickBack} className={css.backBtn}>
-              ← Back
-            </button>
+    <main className={css.main}>
+      <div className={css.container}>
+        <div className={css.item}>
+          <button onClick={handleClickBack} className={css.backBtn}>
+            ← Back
+          </button>
 
-            <div className={css.post}>
-              <div className={css.wrapper}>
-                <div className={css.header}>
-                  <h2>{post?.title}</h2>
-                </div>
-
-                <p className={css.content}>{post?.body}</p>
+          <div className={css.post}>
+            <div className={css.wrapper}>
+              <div className={css.header}>
+                <h2>{post?.title}</h2>
               </div>
-              <p className={css.user}>Author: {user?.name}</p>
+
+              <p className={css.content}>{post?.body}</p>
             </div>
+            <p className={css.user}>Author: {user?.name}</p>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
